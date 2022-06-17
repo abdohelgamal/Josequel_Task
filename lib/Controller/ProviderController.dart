@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:josequel_task/api_key.dart';
 import 'package:josequel_task/Model/Wallpaper.dart';
@@ -58,7 +59,6 @@ class ProjectProvider extends ChangeNotifier {
     log(favWallpapers.toString());
     Box favWallpapersBox = Hive.box('favwallpapersbox');
     favWallpapersBox.put('favwallpapers', favWallpapers);
-    notifyListeners();
   }
 
   void removeFromFavourites(WallPaper wallpaper) {
@@ -68,6 +68,15 @@ class ProjectProvider extends ChangeNotifier {
     log(favWallpapers.toString());
     Box favWallpapersBox = Hive.box('favwallpapersbox');
     favWallpapersBox.put('favwallpapers', favWallpapers);
-    notifyListeners();
+  }
+
+  void downloadWallpaper(WallPaper wallPaper) {
+    FlutterDownloader.enqueue(
+        fileName: wallPaper.name.isNotEmpty ? "${wallPaper.name}.jpg" : null,
+        url: wallPaper.urlLarge,
+        savedDir: savePath,
+        showNotification: true,
+        saveInPublicStorage: true,
+        openFileFromNotification: false);
   }
 }

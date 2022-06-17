@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:josequel_task/Controller/ProviderController.dart';
 import 'package:josequel_task/Model/Wallpaper.dart';
 import 'package:provider/provider.dart';
@@ -43,15 +42,7 @@ class WallPaperPage extends StatelessWidget {
                   }),
                   IconButton(
                       onPressed: () {
-                        FlutterDownloader.enqueue(
-                            fileName: wallPaper.name.isNotEmpty
-                                ? "${wallPaper.name}.jpg"
-                                : null,
-                            url: wallPaper.urlLarge,
-                            savedDir: provider.savePath,
-                            showNotification: true,
-                            saveInPublicStorage: true,
-                            openFileFromNotification: false);
+                       provider.downloadWallpaper(wallPaper);
                       },
                       color: Colors.red,
                       icon: const Icon(Icons.download, size: 60))
