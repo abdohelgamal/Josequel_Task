@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
@@ -85,17 +84,7 @@ class _SplashState extends State<Splash> {
       _bindBackgroundIsolate();
       return;
     }
-    _port.listen((dynamic data) {
-      final taskId = (data as List<dynamic>)[0] as String;
-      final status = data[1] as DownloadTaskStatus;
-      final progress = data[2] as int;
-
-      print(
-        'Callback on UI isolate: '
-        'task ($taskId) is in status ($status) and process ($progress)',
-      );
-
-    });
+    _port.listen((dynamic data) {});
   }
 
   void _unbindBackgroundIsolate() {
@@ -107,11 +96,6 @@ class _SplashState extends State<Splash> {
     DownloadTaskStatus status,
     int progress,
   ) {
-    print(
-      'Callback on background isolate: '
-      'task ($id) is in status ($status) and process ($progress)',
-    );
-
     IsolateNameServer.lookupPortByName('downloader_send_port')
         ?.send([id, status, progress]);
   }
@@ -120,7 +104,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     _bindBackgroundIsolate();
     _checkPermission().whenComplete(() => _prepareSaveDir()).whenComplete(() {
-          FlutterDownloader.registerCallback(downloadCallback);
+      FlutterDownloader.registerCallback(downloadCallback);
       Provider.of<ProjectProvider>(navKey.currentContext!, listen: false)
           .savePath = _localPath!;
       Future.delayed(const Duration(seconds: 2), () {
@@ -133,7 +117,7 @@ class _SplashState extends State<Splash> {
     super.initState();
   }
 
-    @override
+  @override
   void dispose() {
     _unbindBackgroundIsolate();
     super.dispose();

@@ -21,12 +21,14 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
                 .indexWhere((wallPaper) => wallPaper.name == data)]);
           }));
         },
-        backgroundColor: Colors.indigo,foregroundColor: Colors.white,
+        backgroundColor: Colors.indigo,
+        foregroundColor: Colors.white,
         asyncSuggestions: provider.searchWallpapers,
         title: const Text('Welcome To Wallpapers App'),
         onSearch: (query) {});
   }
-  
+
   @override
-  Size get preferredSize =>   Size.fromHeight(MediaQuery.of(navKey.currentContext!).viewPadding.top + 35);
+  Size get preferredSize => Size.fromHeight(
+      MediaQuery.of(navKey.currentContext!).viewPadding.top + 35);
 }

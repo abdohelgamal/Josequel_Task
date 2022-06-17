@@ -46,11 +46,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(floatingActionButton: FloatingActionButton.extended(
-      backgroundColor: Colors.pink,foregroundColor: Colors.white,
-      onPressed: (){
-      navKey.currentState!.push(MaterialPageRoute(builder: (context) => const Favourites()));
-    }, label: const Text('Favourites')),
+    return Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: Colors.pink,
+            foregroundColor: Colors.white,
+            onPressed: () {
+              navKey.currentState!.push(
+                  MaterialPageRoute(builder: (context) => const Favourites()));
+            },
+            label: const Text('Favourites')),
         appBar: const SearchAppBar(),
         body: PagedGridView<int, WallPaper>(
             padding: const EdgeInsets.all(15),

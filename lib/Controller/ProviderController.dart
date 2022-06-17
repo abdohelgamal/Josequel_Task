@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:josequel_task/Api%20Key.dart';
+import 'package:josequel_task/api_key.dart';
 import 'package:josequel_task/Model/Wallpaper.dart';
 
 class ProjectProvider extends ChangeNotifier {

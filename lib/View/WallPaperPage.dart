@@ -43,7 +43,10 @@ class WallPaperPage extends StatelessWidget {
                   }),
                   IconButton(
                       onPressed: () {
-                        FlutterDownloader.enqueue(fileName: wallPaper.name != null  && wallPaper.name.isNotEmpty ? "${wallPaper.name}.jpg" : null,
+                        FlutterDownloader.enqueue(
+                            fileName: wallPaper.name.isNotEmpty
+                                ? "${wallPaper.name}.jpg"
+                                : null,
                             url: wallPaper.urlLarge,
                             savedDir: provider.savePath,
                             showNotification: true,
